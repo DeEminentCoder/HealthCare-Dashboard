@@ -10,7 +10,7 @@ const Navbar = () => {
           <img src="TestLogo.svg" alt="" width={160} />
         </div>
       </div>
-      <div id="nav" className="d-flex gap-3 justify-content-between">
+      <div id="nav" className="d-flex gap-4 justify-content-between">
         <div id="nav-links" className="d-flex p-1 gap-1">
           <img src="home.svg" alt="" width={14}/>
           <span className="fw-bold">Overview</span>
