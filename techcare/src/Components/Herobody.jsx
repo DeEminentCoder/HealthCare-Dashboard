@@ -129,126 +129,116 @@ const Herobody = () => {
         </div>
 
         <div className="col-md-6">
-          <div
-            className="bg-white rounded p-3 shadow"
-            style={{ height: "550px" }}
-          >
-            <h5 className="card-title mb-3 fw-bold">Diagnosis History</h5>
-            <div className="d-flex justify-content-center">
-              <Line options={options} data={data} height={130} />
-              <br />
-            </div>
-            <div className="row mt-4">
-              <div className="col-md-4">
-                <div className="card">
-                  <div className="card-body bg-info bg-opacity-25">
-                    <h5 className="card-title">
-                      <img src="respiratory rate.svg" alt="" width={70} />
-                    </h5>
-                    <small className="card-text">Respiratory rate</small>
-                    <p className="card-text-bold fw-bold fs-5">20 bpm</p>
-                    <small className="norm">Normal</small>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card">
-                  <div className="card-body bg-danger bg-opacity-10">
-                    <h5 className="card-title">
-                      <img src="temperature.svg" alt="" width={70} />
-                    </h5>
-                    <small className="card-text">Temperature</small>
-                    <p className="card-text-bold fw-bold fs-5">98.6℉</p>
-                    <small className="norm">Normal</small>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card">
-                  <div className="card-body bg-danger bg-opacity-10">
-                    <h5 className="card-title">
-                      <img src="HeartBPM.svg" alt="" width={70} />
-                    </h5>
-                    <small className="card-text">Heart rate</small>
-                    <p className="card-text-bold fw-bold fs-5">78 bpm</p>
-                    <div className="dropdown dropstart">
-                      <small
-                        className="dropdown-toggle"
-                        type="button"
-                        id="dropdownMenuButton"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        <small className="norm">Lower than average</small>
-                      </small>
-                      <ul
-                        className="dropdown-menu"
-                        aria-labelledby="dropdownMenuButton"
-                      >
-                        <li className="">
-                          <span className="dropdown-item text-muted" href="#">
-                            View Details
-                          </span>
-                        </li>
-                        <li>
-                          <span className="dropdown-item text-muted" href="#">
-                            View Details
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="bg-white rounded mt-4 p-3 shadow overflow-auto"
-            style={{ height: "250px" }}
-          >
-            <h5 className="mb-4 fw-bold">Diagnosis List</h5>
-            <table className="table table-borderless">
-              <thead className="norm table-light rounded-5">
-                <tr>
-                  <th className="text-start">Problem/Diagnosis</th>
-                  <th className="text-start ">Description</th>
-                  <th className="text-start">Status</th>
-                </tr>
-              </thead>
-              <tbody className="text-muted">
-                <tr>
-                  <td className="text-start pt-4">Hypertension</td>
-                  <td className="text-start pt-4">
-                    High blood pressure condition
-                  </td>
-                  <td className="text-start pt-4 text-nowwrap text-break lh-sm">
-                    Under <br /> Observation
-                  </td>
-                </tr>
-                <tr>
-                  <td className="text-start">Type 2 Diabetes</td>
-                  <td className="text-start">Chronic high blood pressure</td>
-                  <td className="text-start">Cured</td>
-                </tr>
-                <tr>
-                  <td className="text-start">Asthma</td>
-                  <td className="text-start">Managed Managed</td>
-                  <td className="text-start">Cured</td>
-                </tr>
-                <tr>
-                  <td className="text-start">Asthma</td>
-                  <td className="text-start">Managed Managed</td>
-                  <td className="text-start">Cured</td>
-                </tr>
-                <tr>
-                  <td className="text-start">Asthma</td>
-                  <td className="text-start">Managed Managed</td>
-                  <td className="text-start">Cured</td>
-                </tr>
-              </tbody>
-            </table>
+  <div
+    className="bg-white rounded p-3 shadow mb-4"
+    style={{ minHeight: "550px" }}
+  >
+    <h5 className="card-title mb-3 fw-bold">Diagnosis History</h5>
+    <div className="d-flex justify-content-center">
+      <Line options={options} data={data} height={130} />
+      <br />
+    </div>
+    <div className="row mt-4">
+      <div className="col-md-4 py-2">
+        <div className="card">
+          <div className="card-body bg-info bg-opacity-25">
+            <h5 className="card-title">
+              <img src="respiratory rate.svg" alt="" width={70} />
+            </h5>
+            <small className="card-text">Respiratory rate</small>
+            <p className="card-text-bold fw-bold fs-5">20 bpm</p>
+            <small className="norm">Normal</small>
           </div>
         </div>
+      </div>
+      <div className="col-md-4 py-2">
+        <div className="card">
+          <div className="card-body bg-danger bg-opacity-10">
+            <h5 className="card-title">
+              <img src="temperature.svg" alt="" width={70} />
+            </h5>
+            <small className="card-text">Temperature</small>
+            <p className="card-text-bold fw-bold fs-5">98.6℉</p>
+            <small className="norm">Normal</small>
+          </div>
+        </div>
+      </div>
+      <div className="col-md-4 py-2">
+        <div className="card">
+          <div className="card-body bg-danger bg-opacity-10">
+            <h5 className="card-title">
+              <img src="HeartBPM.svg" alt="" width={70} />
+            </h5>
+            <small className="card-text">Heart rate</small>
+            <p className="card-text-bold fw-bold fs-5">78 bpm</p>
+            <div className="dropdown dropstart">
+              <small
+                className="dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <small className="norm">Lower than average</small>
+              </small>
+              <ul
+                className="dropdown-menu"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <li className="">
+                  <span className="dropdown-item text-muted" href="#">
+                    View Details
+                  </span>
+                </li>
+                <li>
+                  <span className="dropdown-item text-muted" href="#">
+                    View Details
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    className="bg-white rounded p-3 shadow overflow-auto"
+    style={{ height: "237px" }}
+  >
+    <h5 className="mb-4 fw-bold">Diagnosis List</h5>
+    <table className="table table-borderless">
+      <thead className="norm table-light rounded-5">
+        <tr>
+          <th className="text-start">Problem/Diagnosis</th>
+          <th className="text-start ">Description</th>
+          <th className="text-start">Status</th>
+        </tr>
+      </thead>
+      <tbody className="text-muted">
+        <tr>
+          <td className="text-start pt-4">Hypertension</td>
+          <td className="text-start pt-4">High blood pressure condition</td>
+          <td className="text-start pt-4 text-nowrap text-break lh-sm">
+            Under <br /> Observation
+          </td>
+        </tr>
+        <tr>
+          <td className="text-start">Type 2 Diabetes</td>
+          <td className="text-start">Chronic high blood pressure</td>
+          <td className="text-start">Cured</td>
+        </tr>
+        <tr>
+          <td className="text-start">Asthma</td>
+          <td className="text-start">Managed Managed</td>
+          <td className="text-start">Cured</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
         <div className="col-md-3 pb-5">
           <div
