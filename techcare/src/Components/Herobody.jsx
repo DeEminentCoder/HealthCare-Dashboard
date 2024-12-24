@@ -48,21 +48,20 @@ const data = {
       backgroundColor: "rgba(54, 162, 235, 0.6)",
       borderColor: "rgb(54, 162, 235)",
       borderWidth: 1,
-      barPercentage: 0.6, // Reduced bar width
-      categoryPercentage: 0.8, // Reduced space between bars
+      categoryPercentage: 0.8, 
     },
   ],
 };
 
 const options = {
   responsive: true,
-  maintainAspectRatio: true, // Allow resizing
+  maintainAspectRatio: true,
   plugins: {
     legend: {
       position: "top",
       labels: {
         font: {
-          size: 10, // Smaller font size for legend
+          size: 10,
         },
       },
     },
@@ -70,7 +69,7 @@ const options = {
       display: true,
       text: "Patient Weight Over Time",
       font: {
-        size: 12, // Smaller title font
+        size: 12,
       },
     },
   },
@@ -78,14 +77,14 @@ const options = {
     x: {
       ticks: {
         font: {
-          size: 10, // Smaller X-axis labels
+          size: 10,
         },
       },
     },
     y: {
       ticks: {
         font: {
-          size: 10, // Smaller Y-axis labels
+          size: 10, 
         },
       },
     },
@@ -165,90 +164,90 @@ const Herobody = () => {
                 </div>
               </div>
               <div className="col-md-4">
-  <div className="card">
-    <div className="card-body bg-danger bg-opacity-10">
-      <h5 className="card-title">
-        <img src="HeartBPM.svg" alt="" width={70} />
-      </h5>
-      <small className="card-text">Heart rate</small>
-      <p className="card-text-bold fw-bold fs-5">78 bpm</p>
-      <div className="dropdown dropstart">
-        <small
-          className="dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <small className="norm">Lower than average</small>
-        </small>
-        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li className="">
-            <span className="dropdown-item text-muted" href="#">
-              View Details
-            </span>
-          </li>
-          <li>
-            <span className="dropdown-item text-muted" href="#">
-            View Details
-            </span>
-          </li>
-          
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
+                <div className="card">
+                  <div className="card-body bg-danger bg-opacity-10">
+                    <h5 className="card-title">
+                      <img src="HeartBPM.svg" alt="" width={70} />
+                    </h5>
+                    <small className="card-text">Heart rate</small>
+                    <p className="card-text-bold fw-bold fs-5">78 bpm</p>
+                    <div className="dropdown dropstart">
+                      <small
+                        className="dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <small className="norm">Lower than average</small>
+                      </small>
+                      <ul
+                        className="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
+                      >
+                        <li className="">
+                          <span className="dropdown-item text-muted" href="#">
+                            View Details
+                          </span>
+                        </li>
+                        <li>
+                          <span className="dropdown-item text-muted" href="#">
+                            View Details
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div
-  className="bg-white rounded mt-4 p-3 shadow overflow-auto"
-  style={{ height: "250px" }}
->
-  <h5
-    className="mb-4 fw-bold"
-  >
-    Diagnosis List
-  </h5>
-  <table className="table table-borderless">
-    <thead className="norm table-light rounded-5">
-      <tr>
-        <th className="text-start">Problem/Diagnosis</th>
-        <th className="text-start ">Description</th>
-        <th className="text-start">Status</th>
-      </tr>
-    </thead>
-    <tbody className="text-muted">
-      <tr>
-        <td className="text-start pt-4">Hypertension</td>
-        <td className="text-start pt-4">High blood pressure condition</td>
-        <td className="text-start pt-4 text-nowwrap text-break lh-sm">Under <br /> Observation</td>
-      </tr>
-      <tr>
-        <td className="text-start">Type 2 Diabetes</td>
-        <td className="text-start">Chronic high blood pressure</td>
-        <td className="text-start">Cured</td>
-      </tr>
-      <tr>
-        <td className="text-start">Asthma</td>
-        <td className="text-start">Managed Managed</td>
-        <td className="text-start">Cured</td>
-      </tr>
-      <tr>
-        <td className="text-start">Asthma</td>
-        <td className="text-start">Managed Managed</td>
-        <td className="text-start">Cured</td>
-      </tr>
-      <tr>
-        <td className="text-start">Asthma</td>
-        <td className="text-start">Managed Managed</td>
-        <td className="text-start">Cured</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+            className="bg-white rounded mt-4 p-3 shadow overflow-auto"
+            style={{ height: "250px" }}
+          >
+            <h5 className="mb-4 fw-bold">Diagnosis List</h5>
+            <table className="table table-borderless">
+              <thead className="norm table-light rounded-5">
+                <tr>
+                  <th className="text-start">Problem/Diagnosis</th>
+                  <th className="text-start ">Description</th>
+                  <th className="text-start">Status</th>
+                </tr>
+              </thead>
+              <tbody className="text-muted">
+                <tr>
+                  <td className="text-start pt-4">Hypertension</td>
+                  <td className="text-start pt-4">
+                    High blood pressure condition
+                  </td>
+                  <td className="text-start pt-4 text-nowwrap text-break lh-sm">
+                    Under <br /> Observation
+                  </td>
+                </tr>
+                <tr>
+                  <td className="text-start">Type 2 Diabetes</td>
+                  <td className="text-start">Chronic high blood pressure</td>
+                  <td className="text-start">Cured</td>
+                </tr>
+                <tr>
+                  <td className="text-start">Asthma</td>
+                  <td className="text-start">Managed Managed</td>
+                  <td className="text-start">Cured</td>
+                </tr>
+                <tr>
+                  <td className="text-start">Asthma</td>
+                  <td className="text-start">Managed Managed</td>
+                  <td className="text-start">Cured</td>
+                </tr>
+                <tr>
+                  <td className="text-start">Asthma</td>
+                  <td className="text-start">Managed Managed</td>
+                  <td className="text-start">Cured</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div className="col-md-3 pb-5">
@@ -324,39 +323,71 @@ const Herobody = () => {
           >
             <h5 className="mb-3 fw-bold">Lab Results</h5>
             <div className="d-block">
-                <div className="norm py-2 text-muted d-flex justify-content-between px-3">
-                  <span>Blood Test</span>
-                  <img src="download_FILL0_wght300_GRAD0_opsz24 (1).svg" alt="" width={15}/>
-                </div>
-                <div className="norm py-2 text-muted d-flex justify-content-between px-3 rounded-2 bg-light">
-                  <span>CT Scans</span>
-                  <img src="download_FILL0_wght300_GRAD0_opsz24 (1).svg" alt="" width={15}/>
-                </div>
-                <div className="norm py-2 text-muted d-flex justify-content-between px-3">
-                  <span>Hypertension</span>
-                  <img src="download_FILL0_wght300_GRAD0_opsz24 (1).svg" alt="" width={15}/>
-                </div>
-                <div className="norm py-2 text-muted d-flex justify-content-between px-3">
-                  <span>X-Rays</span>
-                  <img src="download_FILL0_wght300_GRAD0_opsz24 (1).svg" alt="" width={15}/>
-                </div>
-                <div className="norm py-2 text-muted d-flex justify-content-between px-3">
-                  <span>Hypertension</span>
-                  <img src="download_FILL0_wght300_GRAD0_opsz24 (1).svg" alt="" width={15}/>
-                </div>
-                <div className="norm py-2 text-muted d-flex justify-content-between px-3">
-                  <span>Hypertension</span>
-                  <img src="download_FILL0_wght300_GRAD0_opsz24 (1).svg" alt="" width={15}/>
-                </div>
-                <div className="norm py-2 text-muted d-flex justify-content-between px-3">
-                  <span>Hypertension</span>
-                  <img src="download_FILL0_wght300_GRAD0_opsz24 (1).svg" alt="" width={15}/>
-                </div>
-                <div className="norm py-2 text-muted d-flex justify-content-between px-3">
-                  <span>Hypertension</span>
-                  <img src="download_FILL0_wght300_GRAD0_opsz24 (1).svg" alt="" width={15}/>
-                </div>
+              <div className="norm py-2 text-muted d-flex justify-content-between px-3">
+                <span>Blood Test</span>
+                <img
+                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
+                  alt=""
+                  width={15}
+                />
               </div>
+              <div className="norm py-2 text-muted d-flex justify-content-between px-3 rounded-2 bg-light">
+                <span>CT Scans</span>
+                <img
+                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
+                  alt=""
+                  width={15}
+                />
+              </div>
+              <div className="norm py-2 text-muted d-flex justify-content-between px-3">
+                <span>Hypertension</span>
+                <img
+                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
+                  alt=""
+                  width={15}
+                />
+              </div>
+              <div className="norm py-2 text-muted d-flex justify-content-between px-3">
+                <span>X-Rays</span>
+                <img
+                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
+                  alt=""
+                  width={15}
+                />
+              </div>
+              <div className="norm py-2 text-muted d-flex justify-content-between px-3">
+                <span>Hypertension</span>
+                <img
+                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
+                  alt=""
+                  width={15}
+                />
+              </div>
+              <div className="norm py-2 text-muted d-flex justify-content-between px-3">
+                <span>Hypertension</span>
+                <img
+                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
+                  alt=""
+                  width={15}
+                />
+              </div>
+              <div className="norm py-2 text-muted d-flex justify-content-between px-3">
+                <span>Hypertension</span>
+                <img
+                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
+                  alt=""
+                  width={15}
+                />
+              </div>
+              <div className="norm py-2 text-muted d-flex justify-content-between px-3">
+                <span>Hypertension</span>
+                <img
+                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
+                  alt=""
+                  width={15}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
