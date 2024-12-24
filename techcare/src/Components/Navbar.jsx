@@ -30,8 +30,8 @@ const Navbar = () => {
         </div>
         <div
           id="nav-links"
-          className="d-flex py-1 px-2 btn btn-info active rounded-5"
-          style={{ fontSize: '0.9rem' }}
+          className="d-flex py-1 px-2 btn btn-outline-0 rounded-5"
+          style={{ fontSize: '0.9rem',backgroundColor: '#01F0D0' }}
         >
           <img src="group.svg" alt="Group" width={16} />
           <span className="fw-bold p-1">Patients</span>

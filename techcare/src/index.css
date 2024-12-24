@@ -47,10 +47,18 @@
 
 .overflow-auto {
   scrollbar-width: thin;
-  border-radius: 10px;
   scrollbar-color: #072635 transparent;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+}
+
+.card-text-bold {
+  margin-top: -5px;
+  margin-bottom: 0;
+}
+.norm {
+  font-size:0.7em;
+}
+
+.selected-info {
+  font-size: 0.8em;
+  line-height: 1.4;
 }
