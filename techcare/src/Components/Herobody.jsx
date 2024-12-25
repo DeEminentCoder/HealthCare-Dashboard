@@ -1,5 +1,6 @@
 // import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
+// import axios from 'axios'
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -111,7 +112,7 @@ const Herobody = () => {
                   patient.name === "David Lee" ? "bg-info bg-opacity-25" : ""
                 }`}
               >
-                <div className="d-flex align-items-center">
+                <div className="d-flex align-items-center ">
                   <img
                     src={patient.image}
                     alt={patient.name}
