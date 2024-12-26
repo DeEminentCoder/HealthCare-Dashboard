@@ -7,8 +7,24 @@
   font-family: "Manrope", serif;
   /* background-color: #f6f7f8; */
 }
+#logo img {
+  max-width: 150px;
+}
 
-#nav-links span {
+.nav-links {
+  font-size: 0.9rem;
+}
+
+.patientBtn {
+  background-color: #01F0D0 !important;
+}
+
+#right-links {
+  font-size: 0.85rem;
+}
+
+
+.nav-links span {
   color: #072635;
   font-family: "Manrope", serif;
   font-size: small;
