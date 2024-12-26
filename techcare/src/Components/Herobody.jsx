@@ -1,4 +1,5 @@
-// import React from 'react';
+import { useState, useEffect } from "react";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
@@ -12,7 +13,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { useEffect } from "react";
 
 ChartJS.register(
   CategoryScale,
@@ -23,23 +23,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-const patientData = [
-  { name: "Emily Williams", info: "Female 18", image: "layer8.png" },
-  { name: "Ryan Smith", info: "Female 18", image: "Layer 1.png" },
-  { name: "David Lee", info: "Female 18", image: "Layer 2.png" },
-  { name: "Brandon Jones", info: "Female 18", image: "Layer 3.png" },
-  { name: "Jessicca Taylor", info: "Female 18", image: "Layer 4.png" },
-  { name: "Samantha Johnson", info: "Female 18", image: "Layer 5.png" },
-  { name: "Asley Wilson", info: "Female 18", image: "Layer 6.png" },
-  { name: "Ashley Garcia", info: "Female 18", image: "Layer 7.png" },
-  { name: "Christopher Rodriguez", info: "Female 18", image: "Layer 9.png" },
-  { name: "Jessica Martinez", info: "Female 18", image: "Layer 12.png" },
-  { name: "Jessica Martinez", info: "Female 18", image: "Layer 12.png" },
-  { name: "Jessica Martinez", info: "Female 18", image: "Layer 12.png" },
-  { name: "Jessica Martinez", info: "Female 18", image: "Layer 12.png" },
-  { name: "Jessica Martinez", info: "Female 18", image: "Layer 12.png" },
-];
 
 const data = {
   labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
@@ -99,12 +82,13 @@ const Herobody = () => {
   const password = "skills-test";
   const authHeader = `Basic ${btoa(`${username}:${password}`)}`;
 
-  useEffect(() => {
-    console.log('hello');
-    getPatientData();
+  const [patientData, setPatientData] = useState([]);
+  const [selectedPatient, setSelectedPatient] = useState(null);
 
+  useEffect(() => {
+    getPatientData();
   }, []);
-    
+
   const getPatientData = () => {
     axios
       .get(url, {
@@ -114,10 +98,21 @@ const Herobody = () => {
       })
       .then((res) => {
         console.log("Data fetched successfully:", res.data);
+        setPatientData(res.data);
+        if (res.data.length > 0) {
+          setSelectedPatient(res.data[3]);
+        }
       })
       .catch((error) => {
-        console.error("Error fetching data:", error.response?.data || error.message);
+        console.error(
+          "Error fetching data:",
+          error.response?.data || error.message
+        );
       });
+  };
+
+  const handlePatientSelect = (patient) => {
+    setSelectedPatient(patient);
   };
 
   return (
@@ -130,24 +125,40 @@ const Herobody = () => {
           >
             <div className="d-flex justify-content-between align-items-center mb-3  px-3">
               <h5 className="card-title mb-0 fw-bold">Patients</h5>
-              <img src="search.svg" alt="" width={13} />
+              <img src="search.svg" alt="my.jpg" width={13} />
             </div>
+            {patientData.length === 0 && (
+              <center>
+                <img
+                  src="https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-05-37_512.gif"
+                  alt="Loading"
+                  width={200}
+                />
+                <p>Pls Connect Your Internet...</p>
+              </center>
+            )}
             {patientData.map((patient, index) => (
               <div
                 key={index}
                 className={`d-flex justify-content-between align-items-center pb-1 mb-1 px-3 ${
-                  patient.name === "David Lee" ? "bg-info bg-opacity-25" : ""
+                  patient.name === selectedPatient?.name
+                    ? "bg-info bg-opacity-25"
+                    : ""
                 }`}
+                onClick={() => handlePatientSelect(patient)}
               >
-                <div className="d-flex align-items-center ">
+                <div className="d-flex align-items-center px-1">
                   <img
-                    src={patient.image}
+                    src={patient.profile_picture}
                     alt={patient.name}
                     className="rounded-circle me-2"
+                    width={50}
                   />
                   <div className="mt-2">
                     <span className="patientname fw-bold">{patient.name}</span>
-                    <p className="text-muted">{patient.info}</p>
+                    <p className="text-muted">
+                      {patient.gender}, {patient.age}
+                    </p>
                   </div>
                 </div>
                 <span className="fs-4">...</span>
@@ -161,9 +172,7 @@ const Herobody = () => {
             className="bg-white rounded p-3 shadow mb-4"
             style={{ minHeight: "550px" }}
           >
-            <h5 className="card-title mb-3 fw-bold">
-              Diagnosis History
-            </h5>
+            <h5 className="card-title mb-3 fw-bold">Diagnosis History</h5>
             <div className="d-flex justify-content-center">
               <Line options={options} data={data} height={130} />
               <br />
@@ -173,7 +182,7 @@ const Herobody = () => {
                 <div className="card">
                   <div className="card-body bg-info bg-opacity-25">
                     <h5 className="card-title">
-                      <img src="respiratory rate.svg" alt="" width={70} />
+                      <img src="respiratory rate.svg" alt="my.jpg" width={70} />
                     </h5>
                     <small className="card-text">Respiratory rate</small>
                     <p className="card-text-bold fw-bold fs-5">20 bpm</p>
@@ -185,7 +194,7 @@ const Herobody = () => {
                 <div className="card">
                   <div className="card-body bg-danger bg-opacity-10">
                     <h5 className="card-title">
-                      <img src="temperature.svg" alt="" width={70} />
+                      <img src="temperature.svg" alt="my.jpg" width={70} />
                     </h5>
                     <small className="card-text">Temperature</small>
                     <p className="card-text-bold fw-bold fs-5">98.6℉</p>
@@ -197,7 +206,7 @@ const Herobody = () => {
                 <div className="card">
                   <div className="card-body bg-danger bg-opacity-10">
                     <h5 className="card-title">
-                      <img src="HeartBPM.svg" alt="" width={70} />
+                      <img src="HeartBPM.svg" alt="my.jpg" width={70} />
                     </h5>
                     <small className="card-text">Heart rate</small>
                     <p className="card-text-bold fw-bold fs-5">78 bpm</p>
@@ -234,41 +243,43 @@ const Herobody = () => {
           </div>
 
           <div
-            className="bg-white rounded p-3 shadow overflow-auto"
-            style={{ height: "237px" }}
-          >
-            <h5 className="mb-4 fw-bold">Diagnosis List</h5>
-            <table className="table table-borderless">
-              <thead className="norm table-light rounded-5">
-                <tr>
-                  <th className="text-start">Problem/Diagnosis</th>
-                  <th className="text-start ">Description</th>
-                  <th className="text-start">Status</th>
-                </tr>
-              </thead>
-              <tbody className="text-muted">
-                <tr>
-                  <td className="text-start pt-4">Hypertension</td>
-                  <td className="text-start pt-4">
-                    High blood pressure condition
-                  </td>
-                  <td className="text-start pt-4 text-nowrap text-break lh-sm">
-                    Under <br /> Observation
-                  </td>
-                </tr>
-                <tr>
-                  <td className="text-start">Type 2 Diabetes</td>
-                  <td className="text-start">Chronic high blood pressure</td>
-                  <td className="text-start">Cured</td>
-                </tr>
-                <tr>
-                  <td className="text-start">Asthma</td>
-                  <td className="text-start">Managed Managed</td>
-                  <td className="text-start">Cured</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          
+  className="bg-white rounded p-3 shadow overflow-auto"
+  style={{ height: "237px" }}
+>
+  <h5 className="mb-4 fw-bold">Diagnosis List</h5>
+  <table className="table table-borderless">
+    <thead className="norm table-light rounded-5">
+      <tr>
+        <th className="text-start">Problem/Diagnosis</th>
+        <th className="text-start">Description</th>
+        <th className="text-start">Status</th>
+      </tr>
+    </thead>
+    <tbody className="text-muted">
+      {selectedPatient?.diagnostic_list?.map((diagnosis, index) => (
+        <tr key={index}>
+          <td className="text-start pt-3">{diagnosis.name}</td>
+          <td className="text-start pt-3">{diagnosis.description}</td>
+          <td className="text-start pt-3 text-nowrap text-break lh-sm">
+            {diagnosis.status}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  {patientData.length === 0 && (
+              <center>
+                <img
+                  src="https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-05-37_512.gif"
+                  alt="Loading"
+                  width={70}
+                />
+                <p>Pls Connect Your Internet...</p>
+              </center>
+            )}
+</div>
+
         </div>
 
         <div className="col-md-3 pb-5">
@@ -276,138 +287,125 @@ const Herobody = () => {
             className="bg-white rounded p-3 shadow"
             style={{ height: "560px" }}
           >
-            <center className="">
-              <img src="Layer 2@2x.png" alt="" width={150} />
-              <p className="mb-3 fw-bold mt-3">David Lee</p>
-            </center>
-            <div>
-              <div className="p-2 d-flex align-items-center">
-                <div className="pe-4">
-                  <img src="InsuranceIcon.svg" alt="" width={30} />
+            {patientData.length === 0 && (
+              <center>
+                <img
+                  src="https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-05-37_512.gif"
+                  alt="Loading"
+                  width={200}
+                />
+                <p>Pls Connect Your Internet...</p>
+              </center>
+            )}
+            {selectedPatient && (
+              <>
+                <center className="">
+                  <img
+                    src={selectedPatient.profile_picture}
+                    alt="my.jpg"
+                    width={150}
+                  />
+                  <p className="mb-3 fw-bold mt-3">{selectedPatient.name}</p>
+                </center>
+                <div>
+                  <div className="p-2 d-flex align-items-center">
+                    <div className="pe-4">
+                      <img src="InsuranceIcon.svg" alt="my.jpg" width={30} />
+                    </div>
+                    <div className="selected-info">
+                      <small>Date of Birth</small>
+                      <br />
+                      <small className="fw-bold">
+                        {selectedPatient.date_of_birth}
+                      </small>
+                    </div>
+                  </div>
+                  <div className="p-2 d-flex align-items-center">
+                    <div className="pe-4">
+                      <img src="FemaleIcon.svg" alt="my.jpg" width={30} />
+                    </div>
+                    <div className="selected-info">
+                      <small>Gender</small>
+                      <br />
+                      <small className="fw-bold">
+                        {selectedPatient.gender}
+                      </small>
+                    </div>
+                  </div>
+                  <div className="p-2 d-flex align-items-center">
+                    <div className="pe-4">
+                      <img src="PhoneIcon.svg" alt="my.jpg" width={30} />
+                    </div>
+                    <div className="selected-info">
+                      <small>Contact Info.</small>
+                      <br />
+                      <small className="fw-bold">
+                        {selectedPatient.phone_number}
+                      </small>
+                    </div>
+                  </div>
+                  <div className="p-2 d-flex align-items-center">
+                    <div className="pe-4">
+                      <img src="PhoneIcon.svg" alt="my.jpg" width={30} />
+                    </div>
+                    <div className="selected-info">
+                      <small>Emergency Contact</small>
+                      <br />
+                      <small className="fw-bold">
+                        {selectedPatient.emergency_contact}
+                      </small>
+                    </div>
+                  </div>
+                  <div className="p-2 d-flex align-items-center">
+                    <div className="pe-4">
+                      <img src="InsuranceIcon.svg" alt="my.jpg" width={30} />
+                    </div>
+                    <div className="selected-info">
+                      <small>Insurance Provider</small>
+                      <br />
+                      <small className="fw-bold">
+                        {selectedPatient.insurance_type}
+                      </small>
+                    </div>
+                  </div>
                 </div>
-                <div className="selected-info">
-                  <small>Date of Birth</small>
-                  <br />
-                  <small className="fw-bold">August 92, 1996</small>
-                </div>
-              </div>
-              <div className="p-2 d-flex align-items-center">
-                <div className="pe-4">
-                  <img src="FemaleIcon.svg" alt="" width={30} />
-                </div>
-                <div className="selected-info">
-                  <small>Gender</small>
-                  <br />
-                  <small className="fw-bold">Female</small>
-                </div>
-              </div>
-              <div className="p-2 d-flex align-items-center">
-                <div className="pe-4">
-                  <img src="PhoneIcon.svg" alt="" width={30} />
-                </div>
-                <div className="selected-info">
-                  <small>Contact Info.</small>
-                  <br />
-                  <small className="fw-bold">+234 810 373 9480</small>
-                </div>
-              </div>
-              <div className="p-2 d-flex align-items-center">
-                <div className="pe-4">
-                  <img src="PhoneIcon.svg" alt="" width={30} />
-                </div>
-                <div className="selected-info">
-                  <small>Emergency Contact</small>
-                  <br />
-                  <small className="fw-bold">+234 810 373 9480</small>
-                </div>
-              </div>
-              <div className="p-2 d-flex align-items-center">
-                <div className="pe-4">
-                  <img src="InsuranceIcon.svg" alt="" width={30} />
-                </div>
-                <div className="selected-info">
-                  <small>Insurance Provider</small>
-                  <br />
-                  <small className="fw-bold">Sunrise Health Assurance</small>
-                </div>
-              </div>
-            </div>
-            <center className="">
-              <button className="btn btn-sm btn-info rounded-5 fw-medium mt-3 px-4">
-                Show all information
-              </button>
-            </center>
+                <center className="">
+                  <button className="btn btn-sm btn-info rounded-5 fw-medium mt-3 px-4">
+                    Show all information
+                  </button>
+                </center>
+              </>
+            )}
           </div>
           <div
             className="bg-white mt-5 rounded p-3 shadow overflow-auto"
             style={{ height: "215px" }}
           >
             <h5 className="mb-3 fw-bold">Lab Results</h5>
+            {patientData.length === 0 && (
+              <center>
+                <img
+                  src="https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-05-37_512.gif"
+                  alt="Loading"
+                  width={100}
+                />
+                <p>Pls Connect Your Internet...</p>
+              </center>
+            )}
             <div className="d-block">
-              <div className="norm py-2 text-muted d-flex justify-content-between px-3">
-                <span>Blood Test</span>
-                <img
-                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
-                  alt=""
-                  width={15}
-                />
-              </div>
-              <div className="norm py-2 text-muted d-flex justify-content-between px-3 rounded-2 bg-light">
-                <span>CT Scans</span>
-                <img
-                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
-                  alt=""
-                  width={15}
-                />
-              </div>
-              <div className="norm py-2 text-muted d-flex justify-content-between px-3">
-                <span>Hypertension</span>
-                <img
-                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
-                  alt=""
-                  width={15}
-                />
-              </div>
-              <div className="norm py-2 text-muted d-flex justify-content-between px-3">
-                <span>X-Rays</span>
-                <img
-                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
-                  alt=""
-                  width={15}
-                />
-              </div>
-              <div className="norm py-2 text-muted d-flex justify-content-between px-3">
-                <span>Hypertension</span>
-                <img
-                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
-                  alt=""
-                  width={15}
-                />
-              </div>
-              <div className="norm py-2 text-muted d-flex justify-content-between px-3">
-                <span>Hypertension</span>
-                <img
-                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
-                  alt=""
-                  width={15}
-                />
-              </div>
-              <div className="norm py-2 text-muted d-flex justify-content-between px-3">
-                <span>Hypertension</span>
-                <img
-                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
-                  alt=""
-                  width={15}
-                />
-              </div>
-              <div className="norm py-2 text-muted d-flex justify-content-between px-3">
-                <span>Hypertension</span>
-                <img
-                  src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
-                  alt=""
-                  width={15}
-                />
-              </div>
+              {selectedPatient?.lab_results?.map((result, index) => (
+                <div
+                  className="norm py-2 text-muted d-flex justify-content-between px-3"
+                  key={index}
+                >
+                  <span>{result}</span>
+                  <img
+                    src="download_FILL0_wght300_GRAD0_opsz24 (1).svg"
+                    alt="Download Icon"
+                    width={15}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
