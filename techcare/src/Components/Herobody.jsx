@@ -87,7 +87,7 @@ const Herobody = () => {
 
   useEffect(() => {
     getPatientData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getPatientData = () => {
@@ -106,10 +106,8 @@ const Herobody = () => {
       })
       .catch((error) => {
         if (error.response) {
-          // Server responded with a status other than 200 range
           console.error("Server Error:", error.response.data);
         } else if (error.request) {
-          // No response received
           console.error("Network Error:", error.request);
         } else {
           console.error("Unexpected Error:", error.message);
@@ -125,12 +123,10 @@ const Herobody = () => {
     <div className="container-fluid mt-4">
       <div className="row">
         <div className="col-md-3">
-          <div
-            className="bg-white rounded py-3 shadow overflow-auto patientData"
-          >
+          <div className="bg-white rounded py-3 shadow overflow-auto patientData">
             <div className="d-flex justify-content-between align-items-center mb-3  px-3">
               <h5 className="card-title mb-0 fw-bold">Patients</h5>
-              <img src="search.svg" alt="my.jpg" width={13} />
+              <img src="search.svg" alt="img" width={13} />
             </div>
             {patientData.length === 0 && (
               <center>
@@ -139,6 +135,8 @@ const Herobody = () => {
                   alt="Loading"
                   width={200}
                 />
+                <br />
+                <span className="fs-1">🥸</span>
                 <p>Pls Connect Your Internet...</p>
               </center>
             )}
@@ -173,9 +171,7 @@ const Herobody = () => {
         </div>
 
         <div className="col-md-6">
-          <div
-            className="bg-white rounded p-3 shadow mb-4 diagnosisHistory"
-          >
+          <div className="bg-white rounded p-3 shadow mb-4 diagnosisHistory">
             <h5 className="card-title mb-3 fw-bold">Diagnosis History</h5>
             <div className="d-flex justify-content-center">
               <Line options={options} data={data} height={130} />
@@ -186,7 +182,7 @@ const Herobody = () => {
                 <div className="card">
                   <div className="card-body bg-info bg-opacity-25">
                     <h5 className="card-title">
-                      <img src="respiratory rate.svg" alt="my.jpg" width={70} />
+                      <img src="respiratory rate.svg" alt="img" width={70} />
                     </h5>
                     <small className="card-text">Respiratory rate</small>
                     <p className="card-text-bold fw-bold fs-5">20 bpm</p>
@@ -198,7 +194,7 @@ const Herobody = () => {
                 <div className="card">
                   <div className="card-body bg-danger bg-opacity-10">
                     <h5 className="card-title">
-                      <img src="temperature.svg" alt="my.jpg" width={70} />
+                      <img src="temperature.svg" alt="img" width={70} />
                     </h5>
                     <small className="card-text">Temperature</small>
                     <p className="card-text-bold fw-bold fs-5">98.6℉</p>
@@ -210,7 +206,7 @@ const Herobody = () => {
                 <div className="card">
                   <div className="card-body bg-danger bg-opacity-10">
                     <h5 className="card-title">
-                      <img src="HeartBPM.svg" alt="my.jpg" width={70} />
+                      <img src="HeartBPM.svg" alt="img" width={70} />
                     </h5>
                     <small className="card-text">Heart rate</small>
                     <p className="card-text-bold fw-bold fs-5">78 bpm</p>
@@ -246,49 +242,44 @@ const Herobody = () => {
             </div>
           </div>
 
-          <div
-          
-  className="bg-white rounded p-3 shadow overflow-auto DiagnosisList"
->
-  <h5 className="mb-4 fw-bold">Diagnosis List</h5>
-  <table className="table table-borderless">
-    <thead className="norm table-light rounded-5">
-      <tr>
-        <th className="text-start">Problem/Diagnosis</th>
-        <th className="text-start">Description</th>
-        <th className="text-start">Status</th>
-      </tr>
-    </thead>
-    <tbody className="text-muted">
-      {selectedPatient?.diagnostic_list?.map((diagnosis, index) => (
-        <tr key={index}>
-          <td className="text-start pt-3">{diagnosis.name}</td>
-          <td className="text-start pt-3">{diagnosis.description}</td>
-          <td className="text-start pt-3 text-nowrap text-break lh-sm">
-            {diagnosis.status}
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-  {patientData.length === 0 && (
+          <div className="bg-white rounded p-3 shadow overflow-auto DiagnosisList">
+            <h5 className="mb-4 fw-bold">Diagnosis List</h5>
+            <table className="table table-borderless">
+              <thead className="norm table-light rounded-5">
+                <tr>
+                  <th className="text-start">Problem/Diagnosis</th>
+                  <th className="text-start">Description</th>
+                  <th className="text-start">Status</th>
+                </tr>
+              </thead>
+              <tbody className="text-muted">
+                {selectedPatient?.diagnostic_list?.map((diagnosis, index) => (
+                  <tr key={index}>
+                    <td className="text-start pt-3">{diagnosis.name}</td>
+                    <td className="text-start pt-3">{diagnosis.description}</td>
+                    <td className="text-start pt-3 text-nowrap text-break lh-sm">
+                      {diagnosis.status}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            {patientData.length === 0 && (
               <center>
                 <img
                   src="https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-05-37_512.gif"
                   alt="Loading"
                   width={70}
                 />
+                <br />
                 <p>Pls Connect Your Internet...</p>
               </center>
             )}
-</div>
-
+          </div>
         </div>
 
         <div className="col-md-3 pb-5">
-          <div
-            className="bg-white rounded p-3 shadow selected-patient"
-          >
+          <div className="bg-white rounded p-3 shadow selected-patient">
             {patientData.length === 0 && (
               <center>
                 <img
@@ -296,6 +287,8 @@ const Herobody = () => {
                   alt="Loading"
                   width={200}
                 />
+                <br />
+                <span className="fs-1">🥸</span>
                 <p>Pls Connect Your Internet...</p>
               </center>
             )}
@@ -304,7 +297,7 @@ const Herobody = () => {
                 <center className="">
                   <img
                     src={selectedPatient.profile_picture}
-                    alt="my.jpg"
+                    alt="img"
                     width={150}
                   />
                   <p className="mb-3 fw-bold mt-3">{selectedPatient.name}</p>
@@ -312,7 +305,7 @@ const Herobody = () => {
                 <div>
                   <div className="p-2 d-flex align-items-center">
                     <div className="pe-4">
-                      <img src="InsuranceIcon.svg" alt="my.jpg" width={30} />
+                      <img src="InsuranceIcon.svg" alt="img" width={30} />
                     </div>
                     <div className="selected-info">
                       <small>Date of Birth</small>
@@ -324,7 +317,7 @@ const Herobody = () => {
                   </div>
                   <div className="p-2 d-flex align-items-center">
                     <div className="pe-4">
-                      <img src="FemaleIcon.svg" alt="my.jpg" width={30} />
+                      <img src="FemaleIcon.svg" alt="img" width={30} />
                     </div>
                     <div className="selected-info">
                       <small>Gender</small>
@@ -336,7 +329,7 @@ const Herobody = () => {
                   </div>
                   <div className="p-2 d-flex align-items-center">
                     <div className="pe-4">
-                      <img src="PhoneIcon.svg" alt="my.jpg" width={30} />
+                      <img src="PhoneIcon.svg" alt="img" width={30} />
                     </div>
                     <div className="selected-info">
                       <small>Contact Info.</small>
@@ -348,7 +341,7 @@ const Herobody = () => {
                   </div>
                   <div className="p-2 d-flex align-items-center">
                     <div className="pe-4">
-                      <img src="PhoneIcon.svg" alt="my.jpg" width={30} />
+                      <img src="PhoneIcon.svg" alt="img" width={30} />
                     </div>
                     <div className="selected-info">
                       <small>Emergency Contact</small>
@@ -360,7 +353,7 @@ const Herobody = () => {
                   </div>
                   <div className="p-2 d-flex align-items-center">
                     <div className="pe-4">
-                      <img src="InsuranceIcon.svg" alt="my.jpg" width={30} />
+                      <img src="InsuranceIcon.svg" alt="img" width={30} />
                     </div>
                     <div className="selected-info">
                       <small>Insurance Provider</small>
@@ -379,9 +372,7 @@ const Herobody = () => {
               </>
             )}
           </div>
-          <div
-            className="bg-white mt-5 rounded p-3 shadow overflow-auto labResult"
-          >
+          <div className="bg-white mt-5 rounded p-3 shadow overflow-auto labResult">
             <h5 className="mb-3 fw-bold">Lab Results</h5>
             {patientData.length === 0 && (
               <center>
@@ -390,6 +381,8 @@ const Herobody = () => {
                   alt="Loading"
                   width={100}
                 />
+                <br />
+                <span>🥸</span>
                 <p>Pls Connect Your Internet...</p>
               </center>
             )}
