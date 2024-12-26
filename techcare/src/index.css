@@ -63,3 +63,19 @@
   font-size: 0.8em;
   line-height: 1.4;
 }
+
+.labResult {
+  height: 215px;
+}
+.selected-patient {
+  height: 560px;
+}
+.DiagnosisList {
+  height: 237px;
+}
+.diagnosisHistory {
+  min-height: 550px;
+}
+.patientData {
+  height: 825px;
+}

@@ -105,10 +105,15 @@ const Herobody = () => {
         }
       })
       .catch((error) => {
-        console.error(
-          "Error fetching data:",
-          error.response?.data || error.message
-        );
+        if (error.response) {
+          // Server responded with a status other than 200 range
+          console.error("Server Error:", error.response.data);
+        } else if (error.request) {
+          // No response received
+          console.error("Network Error:", error.request);
+        } else {
+          console.error("Unexpected Error:", error.message);
+        }
       });
   };
 
@@ -121,8 +126,7 @@ const Herobody = () => {
       <div className="row">
         <div className="col-md-3">
           <div
-            className="bg-white rounded py-3 shadow overflow-auto"
-            style={{ height: "825px" }}
+            className="bg-white rounded py-3 shadow overflow-auto patientData"
           >
             <div className="d-flex justify-content-between align-items-center mb-3  px-3">
               <h5 className="card-title mb-0 fw-bold">Patients</h5>
@@ -170,8 +174,7 @@ const Herobody = () => {
 
         <div className="col-md-6">
           <div
-            className="bg-white rounded p-3 shadow mb-4"
-            style={{ minHeight: "550px" }}
+            className="bg-white rounded p-3 shadow mb-4 diagnosisHistory"
           >
             <h5 className="card-title mb-3 fw-bold">Diagnosis History</h5>
             <div className="d-flex justify-content-center">
@@ -245,8 +248,7 @@ const Herobody = () => {
 
           <div
           
-  className="bg-white rounded p-3 shadow overflow-auto"
-  style={{ height: "237px" }}
+  className="bg-white rounded p-3 shadow overflow-auto DiagnosisList"
 >
   <h5 className="mb-4 fw-bold">Diagnosis List</h5>
   <table className="table table-borderless">
@@ -285,8 +287,7 @@ const Herobody = () => {
 
         <div className="col-md-3 pb-5">
           <div
-            className="bg-white rounded p-3 shadow"
-            style={{ height: "560px" }}
+            className="bg-white rounded p-3 shadow selected-patient"
           >
             {patientData.length === 0 && (
               <center>
@@ -379,8 +380,7 @@ const Herobody = () => {
             )}
           </div>
           <div
-            className="bg-white mt-5 rounded p-3 shadow overflow-auto"
-            style={{ height: "215px" }}
+            className="bg-white mt-5 rounded p-3 shadow overflow-auto labResult"
           >
             <h5 className="mb-3 fw-bold">Lab Results</h5>
             {patientData.length === 0 && (
