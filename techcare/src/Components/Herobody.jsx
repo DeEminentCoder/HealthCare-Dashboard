@@ -87,6 +87,7 @@ const Herobody = () => {
 
   useEffect(() => {
     getPatientData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getPatientData = () => {
