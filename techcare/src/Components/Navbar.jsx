@@ -14,7 +14,7 @@ const Navbar = () => {
         id="nav"
         className="d-flex gap-2 justify-content-center align-items-center flex-wrap"
       >
-        <div className="nav-links d-flex py-1 px-2 btn">
+        <div className="nav-links d-flex py-1 px-2 btn p-3">
           <img src="home.svg" alt="Home" width={12} />
           <span className="fw-bold p-1">Overview</span>
         </div>
