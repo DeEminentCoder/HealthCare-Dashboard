@@ -7,7 +7,7 @@ const Navbar = () => {
       className="d-flex flex-wrap align-items-center justify-content-md-between justify-content-center bg-body-white px-4 py-2 shadow-sm rounded-5 mx-2 my-2"
     >
       <div id="logo" className="mb-3 mb-md-0 text-md-start text-center">
-        <img src="TestLogo.svg" alt="Logo" className="img-fluid"/>
+        <img src="TestLogo.svg" alt="Logo" className="img-fluid" />
       </div>
 
       <div
