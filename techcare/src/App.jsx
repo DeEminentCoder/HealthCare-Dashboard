@@ -10,6 +10,7 @@ const App = () => {
   return (
     <>
       <Navbar></Navbar>
+      <Herobody></Herobody>
     </>
   )
 }
